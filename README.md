@@ -1,3 +1,21 @@
+Micropython+Motion for Lerdge-X
+===============================
+
+This is a portion of https://github.com/LoialOtter/Open-Lerdge-X
+
+This is a fork of micropython aimed at the Lerdge-X 3d printer controller
+board from Lerdge.
+
+The intention is to add motion control lowlevel drivers to allow reliable
+step+direction control of steppers as well as temperature control. These
+will be programmable via python but will be running in lower level drivers
+with watchdogs to make sure the system continues to monitor for failures
+such as hot end failing to heat or overheating.
+
+This is to be a framework for making motion platforms that are easy to hack
+together and get working with unusual or prototype hardware.
+
+
 [![Build Status](https://travis-ci.org/micropython/micropython.png?branch=master)](https://travis-ci.org/micropython/micropython) [![Coverage Status](https://coveralls.io/repos/micropython/micropython/badge.png?branch=master)](https://coveralls.io/r/micropython/micropython?branch=master)
 
 The MicroPython project
