@@ -1,5 +1,5 @@
 #define MICROPY_HW_BOARD_NAME       "Lerdge-X V1.0.4"
-#define MICROPY_HW_MCU_NAME         "STM32F405RG"
+#define MICROPY_HW_MCU_NAME         "STM32F407RG"
 void LERDGE_X_board_early_init(void);
 #define MICROPY_BOARD_EARLY_INIT    LERDGE_X_board_early_init
 
@@ -18,17 +18,6 @@ void LERDGE_X_board_early_init(void);
 #define MICROPY_HW_SPIFLASH_SCK     (pin_E10)
 #define MICROPY_HW_SPIFLASH_MOSI    (pin_E12)
 #define MICROPY_HW_SPIFLASH_MISO    (pin_E13)
-
-// block device config for SPI flash
-extern const struct _mp_spiflash_config_t spiflash_config;
-extern struct _spi_bdev_t spi_bdev;
-#define MICROPY_HW_BDEV_IOCTL(op, arg) ( \
-    (op) == BDEV_IOCTL_NUM_BLOCKS ? (MICROPY_HW_SPIFLASH_SIZE_BITS / 8 / FLASH_BLOCK_SIZE) : \
-    (op) == BDEV_IOCTL_INIT ? spi_bdev_ioctl(&spi_bdev, (op), (uint32_t)&spiflash_config) : \
-    spi_bdev_ioctl(&spi_bdev, (op), (arg)) \
-)
-#define MICROPY_HW_BDEV_READBLOCKS(dest, bl, n) spi_bdev_readblocks(&spi_bdev, (dest), (bl), (n))
-#define MICROPY_HW_BDEV_WRITEBLOCKS(src, bl, n) spi_bdev_writeblocks(&spi_bdev, (src), (bl), (n))
 
 
 // HSE is 25MHz
@@ -56,7 +45,7 @@ extern struct _spi_bdev_t spi_bdev;
 #define MICROPY_HW_USRSW_PRESSED    (0)
 
 // LEDs
-#define MICROPY_HW_LED1             (pin_E3) // offboard
+#define MICROPY_HW_LED1             (pin_E5) // offboard
 #define MICROPY_HW_LED_ON(pin)      (mp_hal_pin_high(pin))
 #define MICROPY_HW_LED_OFF(pin)     (mp_hal_pin_low(pin))
 
